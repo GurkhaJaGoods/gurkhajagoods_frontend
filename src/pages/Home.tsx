@@ -1,39 +1,23 @@
+import { CategorySection } from "@/components/CategorySection";
+import { FeaturesSection } from "@/components/FeaturesSection";
+import { HeroSection } from "@/components/HeroSection";
+import { LatestUpdatesSection } from "@/components/LatestUpdatesSection";
+import { OffersSection } from "@/components/OffersSections";
+import { ProductSections } from "@/components/ProductSection";
+import { TestimonialsSection } from "@/components/TestimonialsSections";
+
 // src/pages/Home.tsx
 const Home = () => {
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold">Welcome to ShopEase!</h1>
-      <p className="text-gray-600 mt-2">Find your favorite products here.</p>
-      <h1 className="text-3xl font-bold">Welcome to ShopEase!</h1>
-      <p className="text-gray-600 mt-2">
-        Find your favorite products here.
-      </p>{" "}
-      <h1 className="text-3xl font-bold">Welcome to ShopEase!</h1>
-      <p className="text-gray-600 mt-2">
-        Find your favorite products here.
-      </p>{" "}
-      <h1 className="text-3xl font-bold">Welcome to ShopEase!</h1>
-      <p className="text-gray-600 mt-2">
-        Find your favorite products here.
-      </p>{" "}
-      <h1 className="text-3xl font-bold">Welcome to ShopEase!</h1>
-      <p className="text-gray-600 mt-2">
-        Find your favorite products here.
-      </p>{" "}
-      <h1 className="text-3xl font-bold">Welcome to ShopEase!</h1>
-      <p className="text-gray-600 mt-2">
-        Find your favorite products here.
-      </p>{" "}
-      <h1 className="text-3xl font-bold">Welcome to ShopEase!</h1>
-      <p className="text-gray-600 mt-2">
-        Find your favorite products here.
-      </p>{" "}
-      <h1 className="text-3xl font-bold">Welcome to ShopEase!</h1>
-      <p className="text-gray-600 mt-2">
-        Find your favorite products here.
-      </p>{" "}
-      <h1 className="text-3xl font-bold">Welcome to ShopEase!</h1>
-      <p className="text-gray-600 mt-2">Find your favorite products here.</p>
+    <div className="flex flex-col min-h-screen">
+      <HeroSection />
+      <CategorySection />
+
+      <FeaturesSection />
+      <ProductSections />
+      <OffersSection />
+      <TestimonialsSection />
+      <LatestUpdatesSection />
     </div>
   );
 };

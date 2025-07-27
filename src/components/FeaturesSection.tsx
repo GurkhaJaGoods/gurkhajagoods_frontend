@@ -1,3 +1,4 @@
+import { motion, type Variants } from "framer-motion";
 import { Truck, HeadphonesIcon, DollarSign, Award } from "lucide-react";
 
 const features = [
@@ -23,9 +24,32 @@ const features = [
   },
 ];
 
+// Animation variants
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const featureVariants: Variants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
 export function FeaturesSection() {
   return (
-    <section className="relative py-16 bg-secondary text-white overflow-hidden">
+    <section className="relative py-16 bg-primary text-white overflow-hidden">
       {/* Wave Background */}
       <div className="absolute inset-0">
         <svg
@@ -37,14 +61,28 @@ export function FeaturesSection() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}>
           {features.map((feature, index) => (
-            <div key={index} className="text-center">
+            <motion.div
+              key={index}
+              className="text-center"
+              variants={featureVariants}>
               {/* Icon */}
               <div className="flex justify-center mb-4">
-                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                <motion.div
+                  className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center"
+                  whileHover={{
+                    scale: 1.05,
+                    backgroundColor: "rgba(255,255,255,0.3)",
+                  }}
+                  transition={{ duration: 0.2 }}>
                   <feature.icon className="w-8 h-8 text-white" />
-                </div>
+                </motion.div>
               </div>
 
               {/* Content */}
@@ -52,9 +90,9 @@ export function FeaturesSection() {
               <p className="text-white/90 text-sm leading-relaxed">
                 {feature.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

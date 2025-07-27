@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const categories = [
   {
@@ -26,37 +27,65 @@ const categories = [
 ];
 
 export function CategorySection() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  // Animation variants for each item
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 1 },
+    },
+  };
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-muted-foreground mb-12">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold text-center text-muted-foreground mb-12"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}>
           SHOP BY CATEGORY
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        </motion.h2>
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible">
           {categories.map((category) => (
-            <Link to={category.to} key={category.title}>
-              <Card className="relative overflow-hidden group cursor-pointer h-64 rounded-lg">
-                {/* Background Image */}
-                <img
-                  src={category.image}
-                  alt={category.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
+            <motion.div key={category.title} variants={itemVariants}>
+              <Link to={category.to}>
+                <Card className="relative overflow-hidden group cursor-pointer h-64 rounded-lg">
+                  {/* Background Image */}
+                  <img
+                    src={category.image}
+                    alt={category.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
 
-                {/* Content */}
-                <div className="relative z-10 h-full flex items-end p-6">
-                  <h3 className="text-white text-xl font-bold tracking-wide">
-                    {category.title}
-                  </h3>
-                </div>
-              </Card>
-            </Link>
+                  {/* Content */}
+                  <div className="relative z-10 h-full flex items-end p-6">
+                    <h3 className="text-white text-xl font-bold tracking-wide">
+                      {category.title}
+                    </h3>
+                  </div>
+                </Card>
+              </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

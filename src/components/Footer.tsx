@@ -8,7 +8,12 @@ const Footer: FC = () => {
     <footer className="bg-gray-100 mt-7">
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex justify-center text-teal-600">
-          <img src="/logo.png" alt="" width={200} height={300} />
+          <img
+            src="../image/Fulllogo/green.png"
+            alt=""
+            width={200}
+            height={300}
+          />
         </div>
 
         <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">

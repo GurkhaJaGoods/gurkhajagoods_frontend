@@ -23,9 +23,6 @@ const Home = () => {
   }, []);
   return (
     <div className="flex flex-col min-h-screen">
-      <button onClick={() => getData()} className="bg-red-500 p-4 rounded-4xl">
-        Click
-      </button>
       <HeroSection />
       <CategorySection />
 

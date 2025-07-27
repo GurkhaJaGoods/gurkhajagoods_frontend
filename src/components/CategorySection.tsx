@@ -3,24 +3,25 @@ import { Card } from "@/components/ui/card";
 
 const categories = [
   {
-    title: "FASHION",
-    image: "https://ext.same-assets.com/1656697334/912314341.jpeg",
-    to: "/fashion",
+    title: "Cooking Oils",
+    image:
+      "https://annapurnaexpress.prixacdn.net/media/albums/edible_oil_hmIRDSAGze.jpg", // Using your existing image format
+    to: "/cooking-oils",
   },
   {
-    title: "GROCERY",
-    image: "https://ext.same-assets.com/1656697334/2663094617.webp",
-    to: "/grocery",
+    title: "Spices",
+    image: "https://ext.same-assets.com/1656697334/2663094617.webp", // Using your existing image format
+    to: "/spices",
   },
   {
-    title: "SPORT",
-    image: "https://ext.same-assets.com/1656697334/2300796062.webp",
-    to: "/sport",
+    title: "Rice & Grains",
+    image: "https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg", // Using your existing image format
+    to: "/rice-grains",
   },
   {
-    title: "NEW ARRIVALS",
-    image: "https://ext.same-assets.com/1656697334/2268675111.webp",
-    to: "/new-arrivals",
+    title: "Lentils & Pulses",
+    image: "https://images.pexels.com/photos/3737639/pexels-photo-3737639.jpeg", // Using your existing image format
+    to: "/lentils-pulses",
   },
 ];
 

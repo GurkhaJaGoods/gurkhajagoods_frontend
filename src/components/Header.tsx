@@ -90,10 +90,10 @@ export default function Header() {
               </Link>
 
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-700 hover:text-primary font-medium">
+                {/* <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-700 hover:text-primary font-medium">
                   <span>FASHION</span>
                   <ChevronDown className="h-4 w-4" />
-                </DropdownMenuTrigger>
+                </DropdownMenuTrigger> */}
                 <DropdownMenuContent
                   align="start"
                   sideOffset={5}
@@ -111,17 +111,15 @@ export default function Header() {
                   <span>GROCERY</span>
                   <ChevronDown className="h-4 w-4" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent
+                  align="start"
+                  sideOffset={5}
+                  className="min-w-[200px] shadow-lg">
                   <DropdownMenuItem>Rice</DropdownMenuItem>
                   <DropdownMenuItem>Noodles</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <Link
-                to="/sport"
-                className="text-gray-700 hover:text-primary font-medium">
-                SPORT
-              </Link>
               <Link
                 to="/shop"
                 className="text-gray-700 hover:text-primary font-medium">

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import axiosInstance from "@/config/axiosInstance";
 import {
   FiSearch,
   FiFilter,

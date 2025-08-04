@@ -5,32 +5,34 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 interface ProductCardProps {
-  id: string;
-  title: string;
+  id: any;
+  name: string;
   image: string;
-  originalPrice: number;
-  salePrice: number;
+  price: any;
+  sale_price: any;
+  quantity_in_stock: any;
+  status?: string;
   onSale?: boolean;
   to?: string;
 }
 
 export function ProductCard({
   id,
-  title,
+  name,
   image,
-  originalPrice,
-  salePrice,
-  onSale = false,
+  price,
+  sale_price,
+  quantity_in_stock,
+  status = "in_stock",
+  onSale = true,
   to = "#",
 }: ProductCardProps) {
   const whatsappMessage = encodeURIComponent(
-    `Hello, I want to purchase:\n\n*${title}*\n*Price:* €${salePrice.toFixed(
-      2
-    )}\n*URL:* ${to}\n\nThank you!`
+    `Hello, I want to purchase:\n\n*${name}*\n*Price:* €${sale_price}}\n*URL:* ${to}\n\nThank you!`
   );
 
   const whatsappUrl = `https://web.whatsapp.com/send?phone=%2B358417233118&text=${whatsappMessage}&app_absent=0`;
-
+  console.log("check quantity in stock", quantity_in_stock);
   return (
     <Card className="group relative overflow-hidden bg-white hover:shadow-lg transition-shadow duration-300">
       {/* Sale Badge */}
@@ -53,7 +55,7 @@ export function ProductCard({
         <div className="relative overflow-hidden">
           <img
             src={image}
-            alt={title}
+            alt={name}
             className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
           />
 
@@ -74,7 +76,7 @@ export function ProductCard({
         <div className="p-4">
           <Link to={to}>
             <h3 className="font-medium text-gray-900 hover:text-primary transition-colors duration-200 mb-3">
-              {title}
+              {name}
             </h3>
           </Link>
 
@@ -82,11 +84,11 @@ export function ProductCard({
           <div className="flex items-center space-x-2 mb-4">
             {onSale && (
               <span className="text-sm text-gray-500 line-through">
-                €{originalPrice.toFixed(2)}
+                €{price}
               </span>
             )}
             <span className="text-lg font-bold text-gray-900">
-              €{salePrice.toFixed(2)}
+              €{sale_price}
             </span>
           </div>
 
@@ -96,6 +98,18 @@ export function ProductCard({
               📱 ORDER NOW
             </Button>
           </Link>
+          <div className="mt-2 text-sm">
+            Status:{" "}
+            <span
+              className={
+                status === "in_stock" ? "text-green-500" : "text-red-500"
+              }>
+              {status.replace("_", " ")}
+            </span>
+            {quantity_in_stock > 0 && (
+              <span> ({quantity_in_stock} available)</span>
+            )}
+          </div>
         </div>
       </CardContent>
     </Card>

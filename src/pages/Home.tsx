@@ -10,17 +10,6 @@ import { useEffect } from "react";
 
 // src/pages/Home.tsx
 const Home = () => {
-  const getData = () => {
-    try {
-      const response = axiosInstance.get("/api/products/");
-      console.log("Check response", response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <div className="flex flex-col min-h-screen">
       <HeroSection />

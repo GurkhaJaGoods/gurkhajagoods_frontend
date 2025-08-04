@@ -304,12 +304,13 @@ export function ShopPage() {
                   transition={{ duration: 0.3, delay: index * 0.05 }}>
                   <ProductCard
                     id={product.id}
-                    title={product.title}
+                    name={product.title}
                     image={product.image}
-                    originalPrice={product.originalPrice}
-                    salePrice={product.salePrice}
+                    price={product.originalPrice}
+                    sale_price={product.salePrice}
                     onSale={product.onSale}
                     to={`/products/${product.id}`}
+                    quantity_in_stock={undefined}
                   />
                 </motion.div>
               ))}

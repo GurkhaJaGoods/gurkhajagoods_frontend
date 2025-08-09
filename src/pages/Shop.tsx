@@ -311,6 +311,7 @@ export function ShopPage() {
                     onSale={product.onSale}
                     to={`/products/${product.id}`}
                     quantity_in_stock={undefined}
+                    product={undefined}
                   />
                 </motion.div>
               ))}

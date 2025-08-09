@@ -31,6 +31,12 @@ import Logo from "@/assets/logos/Main logo/logo1.png";
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  const cartItems = JSON.parse(
+    (typeof localStorage !== "undefined" &&
+      localStorage.getItem("CartItems")) ||
+      "[]"
+  );
+
   return (
     <header className="w-full relative">
       {/* Top Info Bar */}
@@ -177,11 +183,11 @@ export default function Header() {
                 to="/cart"
                 className="flex items-center space-x-2 text-gray-700 hover:text-primary">
                 <ShoppingCart className="h-5 w-5" />
-                <span className="hidden sm:block text-sm font-medium">
+                {/* <span className="hidden sm:block text-sm font-medium">
                   CART / €0.00
-                </span>
+                </span> */}
                 <span className="bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  0
+                  {cartItems.length}
                 </span>
               </Link>
 

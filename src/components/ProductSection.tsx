@@ -91,7 +91,6 @@ export function ProductSections() {
     queryKey: ["products"],
     queryFn: getProductLists,
   });
-  console.log("Check waht is in products", products);
   if (isLoading) return <div>Loading products...</div>;
   if (error)
     return <div>Error loading products: {(error as Error).message}</div>;
@@ -155,7 +154,7 @@ export function ProductSections() {
           </div> */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products?.map((product: Product) => (
-              <ProductCard key={product.id} {...product} />
+              <ProductCard key={product.id} {...product} product={product} />
             ))}
           </div>
         </section>
@@ -172,6 +171,7 @@ export function ProductSections() {
                 quantity_in_stock={undefined}
                 key={product.id}
                 {...product}
+                product={product}
               />
             ))}
           </div>

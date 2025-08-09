@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
-import { Heart, Plus } from "lucide-react";
+import { Heart, InfoIcon, LucideShoppingCart, Plus } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTrigger,
+} from "./ui/dialog";
+import Cart from "./Cart";
+import ProductItemDetail from "@/pages/ProductItemDetails";
 
 interface ProductCardProps {
+  product: any;
   id: any;
   name: string;
   image: string;
@@ -17,6 +27,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({
+  product,
   id,
   name,
   image,
@@ -33,6 +44,36 @@ export function ProductCard({
 
   const whatsappUrl = `https://web.whatsapp.com/send?phone=%2B358417233118&text=${whatsappMessage}&app_absent=0`;
   console.log("check quantity in stock", quantity_in_stock);
+  console.log("check product", product);
+
+  const addToCart = () => {
+    const cartItems = JSON.parse(
+      (typeof localStorage !== "undefined" &&
+        localStorage.getItem("CartItems")) ||
+        "[]"
+    );
+    const existingProductIndex = cartItems.findIndex(
+      (item: any) => item.id === product.id
+    );
+
+    if (existingProductIndex !== -1) {
+      // If product exists, update the quantity
+      cartItems[existingProductIndex].quantity += 1;
+    } else {
+      // If product doesn't exist, add it to the cart
+      cartItems.push({
+        id: product.id,
+        name: product.name,
+        price: product.sale_price || product.price, // use sale price if available
+        image: product.image,
+        quantity: 1,
+      });
+    }
+
+    // Save the updated cart items to local storage
+    typeof localStorage !== "undefined" &&
+      localStorage.setItem("CartItems", JSON.stringify(cartItems));
+  };
   return (
     <Card className="group relative overflow-hidden bg-white hover:shadow-lg transition-shadow duration-300">
       {/* Sale Badge */}
@@ -93,11 +134,41 @@ export function ProductCard({
           </div>
 
           {/* WhatsApp Order Button */}
-          <Link to={whatsappUrl} target="_blank" rel="noopener noreferrer">
-            <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
-              📱 ORDER NOW
-            </Button>
-          </Link>
+          <div className="flex flex-col space-y-2">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  onClick={addToCart}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white">
+                  <LucideShoppingCart /> Add to Cart
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader className={"overflow-auto"}>
+                  <DialogDescription>
+                    <Cart />
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  onClick={addToCart}
+                  className="w-full bg-cyan-600 hover:bg-cyan-700 text-white">
+                  <InfoIcon /> View Details
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader className={"overflow-auto"}>
+                  <DialogDescription>
+                    <ProductItemDetail product={product} />
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          </div>
+
           <div className="mt-2 text-sm">
             Status:{" "}
             <span

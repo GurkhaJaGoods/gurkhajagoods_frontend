@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 
 import { WhatsAppFloat } from "./components/WhatsAppFloat";
 import { ShopPage } from "./pages/Shop";
+import Cart from "./components/Cart";
+import OrderConfirmation from "./pages/OrderConfirmation";
 function App() {
   return (
     <Router>
@@ -16,6 +18,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<ShopPage />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/order-confirmation" element={<OrderConfirmation />} />
           </Routes>
         </main>
         <Footer />

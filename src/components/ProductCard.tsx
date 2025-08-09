@@ -42,10 +42,6 @@ export function ProductCard({
     `Hello, I want to purchase:\n\n*${name}*\n*Price:* €${sale_price}}\n*URL:* ${to}\n\nThank you!`
   );
 
-  const whatsappUrl = `https://web.whatsapp.com/send?phone=%2B358417233118&text=${whatsappMessage}&app_absent=0`;
-  console.log("check quantity in stock", quantity_in_stock);
-  console.log("check product", product);
-
   const addToCart = () => {
     const cartItems = JSON.parse(
       (typeof localStorage !== "undefined" &&
